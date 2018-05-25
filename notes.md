@@ -118,8 +118,40 @@ router.delete('/', function(req, res) {
 ```
 
 Repeat for `posts` and `tags`. <br /><br />
-###### postRoutes.js
+
+###### Enhance userRoutes.js
 Retrieve a list of posts for a user:
 ```js
-
+router.get('/:id/posts', (req, res) => {
+  db.getUserPosts(req.params.id)
+    .then(response => {
+      res.send(response);
+    }).catch(err => {
+    res.status(500);
+    console.error(err);
+  })
+});
 ```
+<br /> <br />
+
+###### Enhance postsRoutes.js
+Retrieve a list of posts for a user:
+```js
+router.get('/:id/tags', (req, res) => {
+  db.getPostTags(req.params.id)
+    .then(response => {
+      res.send(response);
+    }).catch(err => {
+    res.status(500);
+    console.error(err);
+  })
+});
+```
+<br /> <br />
+
+##### Client application
+Use create-react-app to create an application inside the root folder, name it client. <br /> <br />
+From root run:  <br />
+`npx create-react-app client` <br />
+`cd client` <br />
+`yarn add axios` <br />
