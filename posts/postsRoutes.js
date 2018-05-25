@@ -35,6 +35,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/:id/tags', (req, res) => {
+  db.getPostTags(req.params.id)
+    .then(response => {
+      res.send(response);
+    }).catch(err => {
+    res.status(500);
+    console.error(err);
+  })
+});
+
 
 //// POST
 router.post('/', (req, res) => {
